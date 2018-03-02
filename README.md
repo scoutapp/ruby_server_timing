@@ -1,6 +1,10 @@
-# Server Timing Response Headers for Rails & Rack Apps ⏱
+# Server Timing Response Headers for Rails & Rack Apps
 
-The `server_timing` gem brings server-side performance metrics collected by the [scout_apm gem](https://github.com/scoutapp/scout_apm_ruby) to your browser via the [Server Timing](https://w3c.github.io/server-timing/) API. Production-safe™ and works on any Ruby framework supported by `scout_apm`. A [Scout](https://scoutapp.com) account is not required.
+Bring server-side performance metrics 📈 to Chrome's Developer Tools via the `server_timing` gem. 
+
+`server_timing` collects performance metrics from the [scout_apm gem](https://github.com/scoutapp/scout_apm_ruby) and sends those to the browser via the  [Server Timing](https://w3c.github.io/server-timing/) API. Production-safe™ and works on any Ruby framework supported by `scout_apm`. 
+
+A [Scout](https://scoutapp.com) account is not required.
 
 ![server timing screenshot](https://s3-us-west-1.amazonaws.com/scout-blog/ruby_server_timing.png?x)
 
@@ -20,7 +24,7 @@ And then execute:
 
 ### Ruby on Rails
 
-For Rails apps, the only required configuration step is setting up a minimal Scout config file. The `server_timing` gem reports metrics collected by the [scout_apm](https://github.com/scoutapp/scout_apm_ruby) gem (added as a dependency of `server_timing`).
+A minimal Scout config file is required. The `server_timing` gem reports metrics collected by the [scout_apm](https://github.com/scoutapp/scout_apm_ruby) gem (added as a dependency of `server_timing`).
 
 If you don't have a Scout account, copy and paste the following minimal configuration into a `RAILS_ROOT/config/scout_apm.yml` file:
 
@@ -49,9 +53,9 @@ use ServerTiming::Middleware
 * Add the minimal Scout config above to `APP_ROOT/scout_apm.yml`.
 * Scout requires additional steps to instrument Rack applications. [See the guide](http://help.apm.scoutapp.com/#rack). Without these steps, the instrumentation will not execute and server timing metrics will not be reported.
 
-## Usage
+## Browser Support
 
-The `server_timing` gem exposes server-side performance metrics collected by the `scout_apm` gem inside your browser. As of this writing, [Chrome Canary](https://www.google.com/chrome/browser/canary.html) Versions 66+ display this information.
+As of this writing, [Chrome Canary](https://www.google.com/chrome/browser/canary.html) Versions 66+ display this information.
 
 ### Instrumentation
 
@@ -67,7 +71,7 @@ Collect performance data on additional method calls by adding custom instrumenta
 
 #### Ruby on Rails
 
-By default, server timing response times are sent in non-development environments. In production, __the headers must be explicitly enabled__ by calling `ServerTiming::Auth.ok!`:
+Server timing response headers are sent in non-production environments. In production, __the headers must be enabled explicitly__ by calling `ServerTiming::Auth.ok!`:
 
 ```ruby
 # app/controllers/application_controller.rb
