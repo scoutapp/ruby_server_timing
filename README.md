@@ -2,7 +2,7 @@
 
 The `server_timing` gem brings server-side performance metrics collected by the [scout_apm gem](https://github.com/scoutapp/scout_apm_ruby) to your browser via the [Server Timing](https://w3c.github.io/server-timing/) API. Production-safe™ and works on any Ruby framework supported by `scout_apm`. A [Scout](https://scoutapp.com) account is not required.
 
-![server timing screenshot](https://s3-us-west-1.amazonaws.com/scout-blog/ruby_server_timing.png)
+![server timing screenshot](https://s3-us-west-1.amazonaws.com/scout-blog/ruby_server_timing.png?x)
 
 ## Gem Installation
 
