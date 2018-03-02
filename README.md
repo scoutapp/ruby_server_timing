@@ -57,19 +57,19 @@ use ServerTiming::Middleware
 
 As of this writing, [Chrome Canary](https://www.google.com/chrome/browser/canary.html) Versions 66+ display this information.
 
-### Instrumentation
+## Instrumentation
 
-#### Auto-Instrumentation
+### Auto-Instrumentation
 
 By default, the total time consumed by each of the libraries `scout_apm` instruments is reported. This includes ActiveRecord, HTTP, Redis, and more. [View the full list of supported libraries](http://help.apm.scoutapp.com/#ruby-instrumented-libs). 
 
-#### Custom Instrumentation
+### Custom Instrumentation
 
 Collect performance data on additional method calls by adding custom instrumentation via `scout_apm`. [See the docs for instructions](http://help.apm.scoutapp.com/#ruby-custom-instrumentation).
 
-### Security
+## Security
 
-#### Ruby on Rails
+### Ruby on Rails
 
 Server timing response headers are sent in non-production environments. In production, __the headers must be enabled explicitly__ by calling `ServerTiming::Auth.ok!`:
 
@@ -83,7 +83,7 @@ before_action do
 end
 ```
 
-#### Rack
+### Rack
 
 Headers are always sent. To toggle:
 
