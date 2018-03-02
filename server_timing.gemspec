@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Derek Haynes"]
   spec.email         = ["derek.haynes@gmail.com"]
 
-  spec.summary       = %q{View server-side performance metrics (ActiveRecord, external HTTP calls, Redis, etc) in your browser developer tools via server timing response headers.}
+  spec.summary       = %q{View server-side performance metrics in your browser.}
   spec.homepage      = "https://github.com/scoutapp/ruby_server_timing"
   spec.license       = "MIT"
 
