@@ -57,7 +57,7 @@ The `server_timing` gem exposes server-side performance metrics collected by the
 
 #### Auto-Instrumentation
 
-By default, the total time consumed by each of the libraries `scout_apm` instruments is reported. This includes ActiveRecord, HTTP, Redis, and more. [View the full list of supported librariess](http://help.apm.scoutapp.com/#ruby-instrumented-libs). 
+By default, the total time consumed by each of the libraries `scout_apm` instruments is reported. This includes ActiveRecord, HTTP, Redis, and more. [View the full list of supported libraries](http://help.apm.scoutapp.com/#ruby-instrumented-libs). 
 
 #### Custom Instrumentation
 
