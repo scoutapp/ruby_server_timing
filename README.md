@@ -2,7 +2,7 @@
 
 Bring server-side performance metrics 📈 to Chrome's Developer Tools via the `server_timing` gem. 
 
-`server_timing` sends performance metrics collected from the [scout_apm gem](https://github.com/scoutapp/scout_apm_ruby)to the browser via the  [Server Timing](https://w3c.github.io/server-timing/) API. Production-safe™ and works on any Ruby framework supported by `scout_apm`. 
+`server_timing` sends performance metrics collected from the [scout_apm gem](https://github.com/scoutapp/scout_apm_ruby) to the browser via the  [Server Timing](https://w3c.github.io/server-timing/) API. Production-safe™ and works on any Ruby framework supported by `scout_apm`. 
 
 A [Scout](https://scoutapp.com) account is not required.
 
