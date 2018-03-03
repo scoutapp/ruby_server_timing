@@ -1,30 +1,46 @@
 module ServerTiming
   # Encapsulates logic that determines whether the user is properly authorized to view server timing response headers.
   class Auth
-    def self.required?
-      return false unless defined? Rails::Railtie # will send headers by default for Rack apps
-
-      return true if Rails.env.production? # Requires a call to `ServerTiming::Auth.ok!` for Rails apps in the production environment.
-
-      false
-    end
-
     def self.ok!
-      Thread.current[:server_timing_authorized] = true
+      self.state=true
     end
 
     def self.deny!
-      Thread.current[:server_timing_authorized] = nil
+      self.state=false
     end
 
+    def self.reset!
+      self.state=nil
+    end
+
+    def self.state=(new_state)
+      Thread.current[:server_timing_authorized] = new_state
+    end
+
+    # Can be one of three values:
+    # * true
+    # * false
+    # * nil (default)
     def self.state
       Thread.current[:server_timing_authorized]
     end
 
     def self.permitted?
-      return true unless required?
+      if state
+        return true
+      elsif state.is_a?(FalseClass)
+        return false
+      else # implied access - state has not been set
+        # If not Rails, return true
+        return true if !ServerTiming.rails?
 
-      state
+        # If in a non-production environment, permit
+        return true if !Rails.env.production?
+
+        # In production, return false if no state has been set
+        return false if Rails.env.production?
+      end
+
     end
   end
 end

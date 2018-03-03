@@ -10,10 +10,11 @@ module ServerTiming
         ResponseManipulator.new(env, rack_response).call
       rescue Exception => e
         # If anything went wrong at all, just bail out and return the unmodified response.
-        puts("ServerTiming: Raised an exception: #{e.message}, #{e.backtrace}")
+        puts "ServerTiming raised an exception: #{e.message}, #{e.backtrace}"
         rack_response
       ensure
-        ServerTiming::Auth.deny!
+        # Reset auth after each request
+        ServerTiming::Auth.reset!
       end
 
     end

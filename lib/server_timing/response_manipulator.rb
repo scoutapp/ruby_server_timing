@@ -1,4 +1,5 @@
 module ServerTiming
+  # Adds the 'Server-Timing' response header w/metrics from Scout.
   class ResponseManipulator
     attr_reader :rack_response
     attr_reader :rack_status, :rack_headers, :rack_body
@@ -21,7 +22,11 @@ module ServerTiming
       rebuild_rack_response
     end
 
+    # Checks if we should attempt to gather metrics. 
     def preconditions_met?
+      # tracked_request.root_layer is nil for Rack apps ... unsure why.
+      return false unless tracked_request.root_layer
+
       Auth.permitted?
     end
 
@@ -40,6 +45,7 @@ module ServerTiming
     def store_metrics
       layer_finder = ScoutApm::LayerConverters::FindLayerByType.new(tracked_request)
       converters = [ScoutApm::LayerConverters::MetricConverter]
+
       walker = ScoutApm::LayerConverters::DepthFirstWalker.new(tracked_request.root_layer)
       converters = converters.map do |klass|
         instance = klass.new(ScoutApm::Agent.instance.context, tracked_request, layer_finder, store)

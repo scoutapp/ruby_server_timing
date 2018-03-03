@@ -1,8 +1,8 @@
-# Server Timing Response Headers for Rails & Rack Apps
+# Server Timing Response Headers for Rails
 
-Bring server-side performance metrics 📈 to Chrome's Developer Tools via the `server_timing` gem. 
+Bring Ruby on Rails server-side performance metrics 📈 to Chrome's Developer Tools via the `server_timing` gem. 
 
-`server_timing` sends performance metrics collected from the [scout_apm](https://github.com/scoutapp/scout_apm_ruby) gem to the browser via the  [Server Timing](https://w3c.github.io/server-timing/) API. Production-safe™ and works on any Ruby framework supported by `scout_apm`. 
+`server_timing` sends server-side Rails app performance metrics collected from the [scout_apm](https://github.com/scoutapp/scout_apm_ruby) gem to the browser via the [Server Timing](https://w3c.github.io/server-timing/) API. Production-safe™. 
 
 A [Scout](https://scoutapp.com) account is not required.
 
@@ -22,8 +22,6 @@ And then execute:
 
 ## Configuration
 
-### Ruby on Rails
-
 A minimal Scout config file is required. The `server_timing` gem reports metrics collected by the [scout_apm](https://github.com/scoutapp/scout_apm_ruby) gem (added as a dependency of `server_timing`).
 
 If you don't have a Scout account, copy and paste the following minimal configuration into a `RAILS_ROOT/config/scout_apm.yml` file:
@@ -39,19 +37,6 @@ production:
 If you have a Scout account, no extra configuration is required. If you wish to see server timing metrics in development, ensure `monitor: true` is set for the `development` environment in the `scout_apm.yml` file.
 
 [See the scout_apm configuration reference](http://help.apm.scoutapp.com/#ruby-configuration-options) for more information.
-
-### Rack
-
-Use the `ServerTiming::Middleware`:
-
-```ruby
-# config.ru
-require 'server_timing'
-use ServerTiming::Middleware
-```
-
-* Add the minimal Scout config above to `APP_ROOT/scout_apm.yml`.
-* Scout requires additional steps to instrument Rack applications. [See the guide](http://help.apm.scoutapp.com/#rack). Without these steps, the instrumentation will not execute and server timing metrics will not be reported.
 
 ## Browser Support
 
@@ -69,9 +54,10 @@ Collect performance data on additional method calls by adding custom instrumenta
 
 ## Security
 
-### Ruby on Rails
+* Non-Production Environments (ex: development, staging) - Server timing response headers are sent by default. 
+* Production - The headers must be enabled.
 
-Server timing response headers are sent in non-production environments. In production, __the headers must be enabled explicitly__ by calling `ServerTiming::Auth.ok!`:
+Response headers can be enabled in production by calling `ServerTiming::Auth.ok!`:
 
 ```ruby
 # app/controllers/application_controller.rb
@@ -83,13 +69,20 @@ before_action do
 end
 ```
 
-### Rack
+To only enable response headers in development and for admins in production:
 
-Headers are always sent. To toggle:
+```ruby
+# app/controllers/application_controller.rb
 
-```
-ServerTiming::Auth.ok! # enables on this and all future requests
-ServerTiming::Auth.deny! # disables on this and all future requests
+before_action do
+  if current_user && current_user.admin?
+    ServerTiming::Auth.ok!
+  elsif Rails.env.development?
+    ServerTiming::Auth.ok!
+  else
+    ServerTiming::Auth.deny!
+  end
+end
 ```
 
 ## Overhead
