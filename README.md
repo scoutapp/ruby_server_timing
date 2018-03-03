@@ -1,10 +1,8 @@
 # Server Timing Response Headers for Rails
 
-Bring Ruby on Rails server-side performance metrics 📈 to Chrome's Developer Tools (and other browsers that support the Server Timing API) via the `server_timing` gem. 
+Bring Ruby on Rails server-side performance metrics 📈 to Chrome's Developer Tools (and other browsers that support the [Server Timing](https://w3c.github.io/server-timing/) API) via the `server_timing` gem. 
 
-`server_timing` sends server-side Rails app performance metrics collected from the [scout_apm](https://github.com/scoutapp/scout_apm_ruby) gem to the browser via the [Server Timing](https://w3c.github.io/server-timing/) API. Production-safe™. 
-
-A [Scout](https://scoutapp.com) account is not required.
+Metrics are collected from the [scout_apm](https://github.com/scoutapp/scout_apm_ruby) gem. A [Scout](https://scoutapp.com) account is not required.
 
 ![server timing screenshot](https://s3-us-west-1.amazonaws.com/scout-blog/ruby_server_timing.png?x)
 
