@@ -4,6 +4,8 @@ module ServerTiming
   end
 end
 
+require "scout_apm"
+
 require "server_timing/auth"
 require "server_timing/middleware"
 require "server_timing/railtie" if ServerTiming.rails?
