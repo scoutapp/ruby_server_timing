@@ -40,7 +40,9 @@ If you have a Scout account, no extra configuration is required. If you wish to 
 
 ## Browser Support
 
-As of this writing, [Chrome Canary](https://www.google.com/chrome/browser/canary.html) Versions 66+ display this information.
+- Chrome 65+
+- Firefox 59+
+- Opera 52+
 
 ## Instrumentation
 
