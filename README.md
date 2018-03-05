@@ -38,7 +38,7 @@ If you have a Scout account, no extra configuration is required. If you wish to 
 
 ## Browser Support
 
-- Chrome 65+
+- Chrome 65+ (Chrome 64 uses an [old format](https://github.com/scoutapp/ruby_server_timing/issues/5#issuecomment-370504687) of the server timing headers. This isn't supported by the gem).
 - Firefox 59+
 - Opera 52+
 
