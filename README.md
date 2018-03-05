@@ -87,8 +87,7 @@ end
 
 ## Overhead
 
-`scout_apm` is designed for use in production apps and is engineered for [low overhead](http://blog.scoutapp.com/articles/2016/02/07/overhead-benchmarks-new-relic-vs-scout) instrumentation.
-
+The `scout_apm` gem, a dependency of `server_timing`, applies [low overhead instrumentation](http://blog.scoutapp.com/articles/2016/02/07/overhead-benchmarks-new-relic-vs-scout) designed for production use.
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
