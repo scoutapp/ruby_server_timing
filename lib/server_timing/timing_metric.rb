@@ -23,7 +23,7 @@ module ServerTiming
 
     def description_to_header
       return unless description
-      "desc='#{description}';"
+      "desc=\"#{description}\";"
     end
   end
 end
